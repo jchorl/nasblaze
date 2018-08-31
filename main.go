@@ -14,8 +14,8 @@ func init() {
 }
 
 func main() {
-	cmdName := "ls"
-	cmdArgs := []string{"-a", "-l"}
+	cmdName := "rclone"
+	cmdArgs := []string{"--config=./rclone.conf", "lsd", "backblaze:"}
 
 	var (
 		cmdOut []byte
