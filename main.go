@@ -5,6 +5,8 @@ import (
 	"strings"
 
 	"github.com/golang/glog"
+	watchdog "github.com/jchorl/watchdog/client"
+	watchdog_types "github.com/jchorl/watchdog/types"
 
 	"github.com/jchorl/nasblaze/drives"
 	"github.com/jchorl/nasblaze/rclone"
@@ -27,6 +29,8 @@ func main() {
 	flag.Var(&filters, "exclude", "Exclude flags passed directly to rclone")
 	flag.Parse()
 
+	glog.Info("Starting")
+
 	// mount the drive, if necessary
 	err := drives.MountDriveBySize(driveSize, mountpoint)
 	if err != nil {
@@ -38,8 +42,9 @@ func main() {
 		glog.Fatalf("Error syncing: %s", err)
 	}
 
-	// wdClient := watchdog.Client{"https://watchdog.joshchorlton.com"}
-	// wdClient.Ping("nasblaze", watchdogTypes.Watch_DAILY)
+	wdClient := watchdog.Client{"https://watchdog.joshchorlton.com"}
+	wdClient.Ping("nasblaze", watchdog_types.Watch_WEEKLY)
+	glog.Info("Complete")
 }
 
 type arrayFlags []string
