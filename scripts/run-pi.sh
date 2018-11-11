@@ -1,4 +1,4 @@
-/home/j/nasblaze \
+/home/j/nasblaze/nasblaze \
     -log_dir=/home/j/logs \
     --dry-run=false \
     --hard-delete=false \

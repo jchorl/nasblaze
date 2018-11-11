@@ -16,7 +16,7 @@ const (
 	driveSize  = "931.3G"
 	mountpoint = "/sync"
 	bucketName = "backup-c3bac1e7-d888-4940-8778-f03adcddfe45"
-	configPath = "./rclone.conf"
+	configPath = "/home/j/nasblaze/rclone.conf"
 )
 
 var (
