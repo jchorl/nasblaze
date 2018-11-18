@@ -53,9 +53,17 @@ func main() {
 		glog.Fatalf("Error syncing: %s", err)
 	}
 
+	err = drives.UnmountDriveByMountpoint(mountpoint)
+	if err != nil {
+		// don't fail, there is a bug where the disk unmounts
+		// but reports that it did not
+		glog.Infof("Error unmounting drive: %s", err)
+	}
+
 	wdClient := watchdog.Client{"https://watchdog.joshchorlton.com"}
 	wdClient.Ping("nasblaze", watchdog.Watch_WEEKLY)
 	glog.Info("Complete")
+	glog.Flush()
 }
 
 // rclone uses standard golang log package

@@ -5,7 +5,14 @@ run:
 	docker run -it --rm jchorl/nasblaze
 
 pi:
-	GOOS=linux GOARCH=arm GOARM=5 go build -o nasblaze main.go
+	docker container run --rm -it \
+		-v $(PWD):/nasblaze \
+		-w /nasblaze \
+		-e GOOS=linux \
+		-e GOARCH=arm \
+		-e GOARM=5 \
+		golang:1.11.2 \
+		go build -o nasblaze main.go
 
 default: build run
 

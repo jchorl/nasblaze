@@ -1,3 +1,3 @@
 # Nasblaze
 ## rsync
-rsync -rltuv --delete . root@192.168.1.59:/mnt/Programming/ 2>&1 > ../output
+rsync -rltuv --delete . root@nas:/sync/Programming/ 2>&1 > /home/j/Downloads/output

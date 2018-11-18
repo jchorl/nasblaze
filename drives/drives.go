@@ -31,11 +31,13 @@ func MountDriveBySize(size string, mountpoint string) error {
 	cmdName := "lsblk"
 	cmdArgs := []string{"--json"}
 	if cmdOut, err = exec.Command(cmdName, cmdArgs...).Output(); err != nil {
+		glog.Errorf("Error running lsblk command: %s", err)
 		return err
 	}
 
 	parsed := lsblkOutput{}
 	if err := json.Unmarshal(cmdOut, &parsed); err != nil {
+		glog.Errorf("Error parsing lsblk output: %s", err)
 		return err
 	}
 
@@ -66,4 +68,19 @@ func MountDriveBySize(size string, mountpoint string) error {
 
 	glog.Errorf("Failed to find a drive with size: %s", size)
 	return fmt.Errorf("Failed to find a drive with size: %s", size)
+}
+
+// UnmountDriveByMountpoint mounts a drive with the given size
+func UnmountDriveByMountpoint(mountpoint string) error {
+	glog.Infof("Ejecting %s", mountpoint)
+	cmdName := "eject"
+	cmdArgs := []string{mountpoint}
+
+	// NOTE there is a bug where this usually errors with fuse/exfat
+	if _, err := exec.Command(cmdName, cmdArgs...).Output(); err != nil {
+		glog.Errorf("Error ejecting disk: %s", err)
+		return err
+	}
+
+	return nil
 }

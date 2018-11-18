@@ -1,1 +1,1 @@
-cp scripts/run-pi.sh /etc/cron.weekly/
+sudo cp /home/j/nasblaze/scripts/run-pi.sh /etc/cron.weekly/
