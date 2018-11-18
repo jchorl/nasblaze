@@ -7,8 +7,7 @@ import (
 	"strings"
 
 	"github.com/golang/glog"
-	watchdog "github.com/jchorl/watchdog/client"
-	watchdog_types "github.com/jchorl/watchdog/types"
+	"github.com/jchorl/watchdog"
 	"github.com/ncw/rclone/fs"
 
 	"github.com/jchorl/nasblaze/drives"
@@ -55,7 +54,7 @@ func main() {
 	}
 
 	wdClient := watchdog.Client{"https://watchdog.joshchorlton.com"}
-	wdClient.Ping("nasblaze", watchdog_types.Watch_WEEKLY)
+	wdClient.Ping("nasblaze", watchdog.Watch_WEEKLY)
 	glog.Info("Complete")
 }
 
