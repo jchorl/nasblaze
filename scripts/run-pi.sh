@@ -3,6 +3,7 @@
     --dry-run=false \
     --hard-delete=false \
     --exclude="**/node_modules/**" \
+    --exclude="**/.next/**" \
     --exclude="**/__pycache__/**" \
     --exclude="**/.git/**" \
     --exclude="**/.svn/**" \
