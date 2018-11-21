@@ -73,10 +73,9 @@ func MountDriveBySize(size string, mountpoint string) error {
 // UnmountDriveByMountpoint mounts a drive with the given size
 func UnmountDriveByMountpoint(mountpoint string) error {
 	glog.Infof("Ejecting %s", mountpoint)
-	cmdName := "eject"
+	cmdName := "umount"
 	cmdArgs := []string{mountpoint}
 
-	// NOTE there is a bug where this usually errors with fuse/exfat
 	if _, err := exec.Command(cmdName, cmdArgs...).Output(); err != nil {
 		glog.Errorf("Error ejecting disk: %s", err)
 		return err

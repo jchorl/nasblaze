@@ -55,9 +55,7 @@ func main() {
 
 	err = drives.UnmountDriveByMountpoint(mountpoint)
 	if err != nil {
-		// don't fail, there is a bug where the disk unmounts
-		// but reports that it did not
-		glog.Infof("Error unmounting drive: %s", err)
+		glog.Fatalf("Error unmounting drive: %s", err)
 	}
 
 	wdClient := watchdog.Client{"https://watchdog.joshchorlton.com"}
