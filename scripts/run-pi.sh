@@ -16,4 +16,5 @@
     --exclude="**/*.class" \
     --exclude=".DS_Store" \
     --exclude="._.DS_Store" \
-    --exclude="_DS_Store"
+    --exclude="_DS_Store" \
+    --exclude="do_not_backup/**"
